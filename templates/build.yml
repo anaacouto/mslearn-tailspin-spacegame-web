@@ -1,20 +1,19 @@
 parameters:
-  buildConfiguration: 'Release'
+  buildConfiguration: "Release"
 
 steps:
   - task: DotNetCore@2
-    displayName: 'Build the project - ${{ parameters.buildConfiguration }}'
+    displayName: "Build the project - ${{ parameters.buildConfiguration }}"
     inputs:
-      command: 'build'
-      arguments: '--no-restore --configuration ${{ parameters.buildConfiguration }}'
-      projects: '**/*.csproj'
-  
-  - task:
-    displayName: 'Publish the project - ${{ parameters.buildConfiguration }}'
+      command: "build"
+      arguments: "--no-restore --configuration ${{ parameters.buildConfiguration }}"
+      projects: "**/*.csproj"
+
+  - task: DotNetCore@2
+    displayName: "Publish the project - ${{ parameters.buildConfiguration }}"
     inputs:
-      command: 'publish'
-      projects: '**/*.csproj'
+      command: "publish"
+      projects: "**/*.csproj"
       publishWebProjects: false
-      arguments: '--no-build --configuration ${{ parameters.buildConfiguration }}'
+      arguments: "--no-build --configuration ${{ parameters.buildConfiguration }}"
       zipAfterPublish: true
-      
